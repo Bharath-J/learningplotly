@@ -20,7 +20,8 @@ data = [go.Scatter(x=random_x,
 
 layout = go.Layout(title='Random Numbers',
                     xaxis=dict(title='Random Normal'),
-                    yaxis=dict(title='Random Uniform')
+                    yaxis=dict(title='Random Uniform'),
+                    hovermode='closest'
                     )
 fig = go.Figure(data=data,layout=layout)
 
