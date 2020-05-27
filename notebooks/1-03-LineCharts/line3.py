@@ -11,13 +11,13 @@ days = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']
 
 data = []
 
-# data = [go.Scatter(x=df[df['DAY']==day]['LST_TIME'],
+# data = [go.Scatter(x=df['LST_TIME'],
 #             y=df[df['DAY']==day]['T_HR_AVG'],
 #             mode='lines',
 #             name=day) for day in days]
 
 for day in days:
-    trace = go.Scatter(x=df[df['DAY']==day]['LST_TIME'],
+    trace = go.Scatter(x=df['LST_TIME'],
                         y=df[df['DAY']==day]['T_HR_AVG'],
                         mode='lines',
                         name=day)
