@@ -9,11 +9,19 @@ print(df.head())
 
 days = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']
 
+data = []
 
-data = [go.Scatter(x=df[df['DAY']==day]['LST_TIME'],
-            y=df[df['DAY']==day]['T_HR_AVG'],
-            mode='lines',
-            name=day) for day in days]
+# data = [go.Scatter(x=df[df['DAY']==day]['LST_TIME'],
+#             y=df[df['DAY']==day]['T_HR_AVG'],
+#             mode='lines',
+#             name=day) for day in days]
+
+for day in days:
+    trace = go.Scatter(x=df[df['DAY']==day]['LST_TIME'],
+                        y=df[df['DAY']==day]['T_HR_AVG'],
+                        mode='lines',
+                        name=day)
+    data.append(trace)
 
 layout = go.Layout(title='Daily Temparatures from June 1-7, Yuma, Arizona')
 
