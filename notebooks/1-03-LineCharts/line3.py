@@ -7,9 +7,16 @@ df = pd.read_csv('../../notebooks/Data/2010YumaAZ.csv')
 
 print(df.head())
 
-data = [go.Scatter(x=df['LST_TIME'],
-                    y=df['T_HR_AVG'],
-                    mode='lines',
-                    name=day) for day in df['DAY']]
+days = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']
 
-pyo.plot(data)
+
+data = [go.Scatter(x=df[df['DAY']==day]['LST_TIME'],
+            y=df[df['DAY']==day]['T_HR_AVG'],
+            mode='lines',
+            name=day) for day in days]
+
+layout = go.Layout(title='Daily Temparatures from June 1-7, Yuma, Arizona')
+
+fig = go.Figure(data=data, layout=layout)
+
+pyo.plot(fig, filename='temperature.html')
