@@ -28,8 +28,8 @@ trace3 = go.Bar(x=df['NOC'],
 data = [trace1,trace2,trace3]
 
 
-layout = go.Layout(title='2018 Winter Olympics Tally')
-
+#layout = go.Layout(title='2018 Winter Olympics Tally')
+layout = go.Layout(title='2018 Winter Olympics Tally',barmode='stack')
 fig = go.Figure(data=data, layout=layout)
 
-pyo.plot(fig, filename='nested_bar.html')
+pyo.plot(fig, filename='stacked_bar.html')
