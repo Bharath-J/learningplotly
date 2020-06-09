@@ -14,4 +14,7 @@ trace2 = go.Box(y=df_random_female, name='Female')
 
 data = [trace1, trace2]
 
-pyo.plot(data, filename='Male_vs_Female_Box_Plot.html')
+layout = go.Layout(title='Male vs Female Rings')
+
+fig = go.Figure(data=data, layout=layout)
+pyo.plot(fig, filename='Male_vs_Female_Box_Plot.html')
