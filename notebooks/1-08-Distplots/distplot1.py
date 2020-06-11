@@ -15,5 +15,5 @@ x4 = np.random.randn(200)+4
 hist_data = [x1,x2,x3,x4]
 group_labels = ['X1','X2','X3','X4']
 
-fig = ff.create_distplot(hist_data,group_labels)
+fig = ff.create_distplot(hist_data,group_labels,bin_size=[.2,.1,.3,.1])
 pyo.plot(fig, filename='Dist-4-variables.html')
