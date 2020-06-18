@@ -9,7 +9,7 @@ print(df.head())
 data = [go.Heatmap(x=df['year'],
                   y=df['month'],
                   z=df['passengers'],
-                  colorscale='Jet')]
+                  colorscale='Blues')]
 layout = go.Layout(title='Passenger Density in Flights')
 fig = go.Figure(data=data, layout=layout)
 
