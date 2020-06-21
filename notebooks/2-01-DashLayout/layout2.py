@@ -28,7 +28,25 @@ app.layout = html.Div([dcc.Graph(id='scatterplot',
                             'layout':go.Layout(title='My Scatter Plot',
                                             xaxis = {'title':'X axis'},
                                             yaxis = {'title':'Y axis'})}
-                            )])
+                            ),
+                            dcc.Graph(id='scatterplot2',
+                                                figure = {'data':
+                                                        [go.Scatter(
+                                                        x=random_x,
+                                                        y=random_y,
+                                                        mode='markers',
+                                                        marker = {
+                                                            'size':12,
+                                                            'color':'rgb(200,204,53)',
+                                                            'symbol':'pentagon',
+                                                            'line':{'width':2}
+                                                        }
+                                                        )],
+                                                        'layout':go.Layout(title='Second Scatter Plot',
+                                                                        xaxis = {'title':'X axis'},
+                                                                        yaxis = {'title':'Y axis'})}
+                                                        )
+                            ])
 
 if __name__=='__main__':
     app.run_server()
