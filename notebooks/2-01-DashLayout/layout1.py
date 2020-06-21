@@ -2,10 +2,17 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 
+print(type(dash.Dash()))
 app = dash.Dash()
 
+
+colors = {'background':'#111111', 'text':'#7FDBFF'}
+
+
 app.layout = html.Div(children=[
-            html.H1('Hello Dash!'),
+            html.H1('Hello Dash!',
+                    style={'textAlign':'center',
+                            'color':colors['text']}),
             html.Div('Dash: Web Dashboards with Python'),
             dcc.Graph(id='example',
                     figure={'data':[
@@ -13,10 +20,15 @@ app.layout = html.Div(children=[
                     {'x':[1,2,3],'y':[2,4,5],'type':'bar','name':'NYC'}
                     ],
                                 'layout':{
+                                'plot_bgcolor':colors['background'],
+                                'paper_bgcolor':colors['background'],
+                                'font':{'color':colors['text']},
                                 'title':'Bar Plots!'
                                         }
                             })
-])
+], style={'backgroundColor':colors['background']}
+
+)
 
 if __name__=='__main__':
     app.run_server()
