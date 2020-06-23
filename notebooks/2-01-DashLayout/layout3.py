@@ -7,3 +7,23 @@ import pandas as pd
 app = dash.Dash()
 
 df = pd.read_csv('../../notebooks/Data/OldFaithful.csv')
+
+#print(df)
+
+app.layout = html.Div([dcc.Graph(id='scatterplot',
+                    figure = {'data':
+                            [go.Scatter(
+                            x=df['Y'],
+                            y=df['X'],
+                            mode='markers',
+                            )
+
+                            ],
+                            'layout':go.Layout(title='Old Faithful')
+
+                    })
+
+                    ])
+
+if __name__=='__main__':
+    app.run_server()
