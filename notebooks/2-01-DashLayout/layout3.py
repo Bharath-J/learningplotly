@@ -19,7 +19,10 @@ app.layout = html.Div([dcc.Graph(id='scatterplot',
                             )
 
                             ],
-                            'layout':go.Layout(title='Old Faithful')
+                            'layout':go.Layout(title='Old Faithful',
+                                                xaxis={'title':'Duration of eruption (minutes)'},
+                                                yaxis={'title':'Interval to next eruption (minutes)'})
+
 
                     })
 
