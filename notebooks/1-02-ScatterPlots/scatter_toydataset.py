@@ -6,23 +6,16 @@ import pandas as pd
 data = datasets.load_iris()
 df = pd.DataFrame(data['data'], columns=data['feature_names'])
 df['target'] = data['target']
-#print(data)
+df['target_names'] = ['setosa' if item==0 else 'versicolor' if item==1 else 'virginica'
+                        for item in df['target']]
+print(df)
 
 x_data = df['sepal length (cm)']
 y_data = df['sepal width (cm)']
-color_data = [0,1,2]
+color_data = ["setosa","versicolor","virginica"]
 
-# plotly_data = [go.Scatter(x=x_data,
-#                             y=y_data,
-#                             mode='markers',
-#                             marker=dict(
-#                                 size=12,
-#                                 color=df['target']
-#                                 ),
-#                             name=color_data
-#                             ) ]
-plotly_data = [go.Scatter(x=df[df['target']==item]['sepal length (cm)'],
-                        y=df[df['target']==item]['sepal width (cm)'],
+plotly_data = [go.Scatter(x=df[df['target_names'] == item]['sepal length (cm)'],
+                        y=df[df['target_names']== item]['sepal width (cm)'],
                         mode='markers',
                         name=item,
                         marker=dict(
@@ -39,6 +32,5 @@ layout = go.Layout(title='Iris Sepal Length vs Sepal Width',
                     )
 
 fig = go.Figure(data=plotly_data, layout=layout)
-# #print(help(go.Scatter))
-#
+
 pyo.plot(fig,filename='Iris_scatter.html')
