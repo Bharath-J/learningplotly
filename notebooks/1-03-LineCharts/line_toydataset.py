@@ -8,3 +8,6 @@ from sklearn import datasets
 app = dash.Dash()
 
 data = datasets.load_boston()
+
+df = pd.DataFrame(data['data'], columns=data['feature_names'])
+print(df.head())
