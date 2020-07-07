@@ -3,24 +3,19 @@ import plotly.graph_objs as go
 import pandas as pd
 from sklearn import datasets
 
-data = datasets.load_boston()
+df = pd.read_csv('../../notebooks/Data/flights.csv')
 
-df = pd.DataFrame(data['data'], columns=data['feature_names'])
+df_groupby = df.groupby(['year']).sum().reset_index()
+#print(df.head())
 
-#print(data)
-df['TARGET'] = data['target']
-print(df.head())
-
-x_data = df['TARGET']
-y_data = df['TAX']
-
-plotly_data = [go.Scatter(x=x_data,
-                        y=y_data,
-                        mode='lines'
+print(df_groupby)
+plotly_data = [go.Scatter(x=df_groupby['year'],
+                        y=df_groupby['passengers'],
+                        mode='lines+markers'
                         )]
 
-layout = go.Layout(title='Boston Housing Prices by Avg Num Rooms')
+layout = go.Layout(title='Num of Passengers per Year')
 
 fig = go.Figure(data=plotly_data, layout=layout)
 
-pyo.plot(fig,filename='Boston_Housing.html')
+pyo.plot(fig,filename='Flight_Passenger.html')
