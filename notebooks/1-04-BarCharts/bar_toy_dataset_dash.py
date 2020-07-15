@@ -5,3 +5,7 @@ import dash_html_components as html
 import plotly.graph_objs as go
 
 app = dash.Dash()
+
+df = pd.read_csv('../../notebooks/Data/mocksurvey.csv')
+
+print(df.head())
