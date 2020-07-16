@@ -7,5 +7,5 @@ import plotly.graph_objs as go
 app = dash.Dash()
 
 df = pd.read_csv('../../notebooks/Data/mocksurvey.csv')
-
+df['target'] = data['target']
 print(df.head())
