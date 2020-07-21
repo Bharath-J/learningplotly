@@ -7,7 +7,7 @@ app = dash.Dash()
 
 app.layout = html.Div([
             dcc.Input(id='my-id', value='Initial Text',type='text'),
-            html.Div(id='my-div')
+            html.Div(id='my-div', style={'border':'2px blue solid'})
 ])
 
 if __name__ =='__main__':
