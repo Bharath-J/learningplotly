@@ -10,9 +10,11 @@ app.layout = html.Div([
             html.Div(id='my-div')
 ])
 
-@app.callback(Output(component_id='my-div',component_property='children'))
+@app.callback(Output(component_id='my-div',component_property='children'),
+            [Input(component_id='my-id',components_property='value')])
 def update_output_div(input_value):
     return "You entered: {}".format(input_value)
+
 
 if __name__ =='__main__':
   app.run_server()
