@@ -5,3 +5,7 @@ from dash.dependencies import Input, Output
 import plotly.graph_objs as go
 import pandas as pd
 import json
+
+app = dash.Dash()
+
+df = pd.read_csv('../../notebooks/Data/wheels.csv')
