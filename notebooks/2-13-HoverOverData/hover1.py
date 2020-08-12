@@ -9,3 +9,21 @@ import json
 app = dash.Dash()
 
 df = pd.read_csv('../../notebooks/Data/wheels.csv')
+
+
+app.layout = html.Div([
+            html.Div(dcc.Graph(id='wheels-plot',
+                                figure={'data':[go.Scatter(
+                                            x=df['color'],
+                                            y=df['wheels'],
+                                            dy=1,
+                                            mode='markers',
+                                            marker={'size':15}
+                                )],
+                                'layout':go.Layout(title='Test',hovermode='closest')}
+                                )),
+            html.Div(html.Pre(id='hover-data',style={'paddingTop':35}),
+                    style={'width':'30%'}),
+])
+
+def callback_image():
