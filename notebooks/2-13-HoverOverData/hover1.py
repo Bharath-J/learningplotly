@@ -26,4 +26,10 @@ app.layout = html.Div([
                     style={'width':'30%'}),
 ])
 
-def callback_image():
+@app.callback(Output('hover-data','children'),
+                    [Input('wheels-plot','hoverData')])
+def callback_image(hoverData):
+    return json.dumps(hoverData,indent=2)
+
+if __name__=='__main__':
+    app.run_server()
