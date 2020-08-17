@@ -21,7 +21,7 @@ app.layout = html.Div([
                                             marker={'size':15}
                                 )],
                                 'layout':go.Layout(title='Test',hovermode='closest')}
-                                )),
+                                ),style={'width':'30%','float':'left'}),
             html.Div(html.Pre(id='hover-data',style={'paddingTop':35}),
                     style={'width':'30%'}),
 ])
