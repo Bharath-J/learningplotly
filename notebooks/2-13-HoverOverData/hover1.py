@@ -5,11 +5,16 @@ from dash.dependencies import Input, Output
 import plotly.graph_objs as go
 import pandas as pd
 import json
+import base64
+
 
 app = dash.Dash()
 
 df = pd.read_csv('../../notebooks/Data/wheels.csv')
 
+def encode_image(image_file):
+    encoded = base64.b64encode(open(image_file,'rb').read())
+    return 'data:image/png;base64,{}'.format(encoded.decode())
 
 app.layout = html.Div([
             html.Div(dcc.Graph(id='wheels-plot',
