@@ -27,14 +27,17 @@ app.layout = html.Div([
                                 )],
                                 'layout':go.Layout(title='Test',hovermode='closest')}
                                 ),style={'width':'30%','float':'left'}),
-            html.Div(html.Pre(id='hover-data',style={'paddingTop':35}),
-                    style={'width':'30%'}),
+            html.Div(html.Img(id='hover-data',src='children',height=300)),
+                    style={'paddingTop':35}),
 ])
 
 @app.callback(Output('hover-data','children'),
                     [Input('wheels-plot','hoverData')])
 def callback_image(hoverData):
-    return json.dumps(hoverData,indent=2)
-
+    wheel = hoverData['points'][0]['y']
+    color = hoverData['points'][0]['x']
+    path = '../../notebooks/Data/'
+    return encode_image()
+    
 if __name__=='__main__':
     app.run_server()
