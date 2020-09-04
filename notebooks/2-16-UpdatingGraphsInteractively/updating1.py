@@ -8,12 +8,14 @@ from numpy import random
 app = dash.Dash()
 
 df = pd.read_csv('../../notebooks/Data/mpg.csv')
+# Adding noise, adding jitter
+df['year'] = random.randint(-4,5,len(df))*0.1 + df['model_year']
 
 app.layout = html.Div([
                     dcc.Graph(id='mpg-scatter',
                                 figure={
                                 'data':[go.Scatter(
-                                        x=df['model_year']+1900,
+                                        x=df['year']+1900,
                                         y=df['mpg'],
                                         text = df['name'],
                                         hoverinfo = 'text',
