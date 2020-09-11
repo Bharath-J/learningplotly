@@ -9,12 +9,26 @@ import os
 
 app = dash.Dash()
 
-IEX_API_KEY = os.environ.get('IEX_TOKEN')
-print(IEX_API_KEY)
-start = datetime(2017,1,1)
-end = datetime(2017,12,31)
-df = web.DataReader('TSLA','iex',start,end,api_key=IEX_API_KEY)
+#IEX_API_KEY = os.environ.get('IEX_TOKEN')
+#print(IEX_API_KEY)
+#start = datetime(2017,1,1)
+#end = datetime(2017,12,31)
+#df = web.DataReader('TSLA','iex',start,end,api_key=IEX_API_KEY)
 #help(web.DataReader)
+
+app.layout = html.Div([
+                    html.H1('Stock Ticker Dashboard'),
+                    html.H3('Enter a stock symbol'),
+                    dcc.Input(id='my_stock_picker',
+                                value='TSLA'),
+                    dcc.Graph(id='my_graph',
+                                    figure={'data':[
+                                            {'x':[1,2],'y':[3,1]}
+                                    ]})
+])
+
+if __name__=='__main__':
+    app.run_server()
 
 
 print(df)
