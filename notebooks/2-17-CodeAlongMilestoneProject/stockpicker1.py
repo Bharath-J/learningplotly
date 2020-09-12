@@ -6,6 +6,7 @@ import dash_html_components as html
 import pandas_datareader.data as web
 from datetime import datetime
 import os
+from dash.dependencies import Input,Output,State
 
 app = dash.Dash()
 
@@ -24,11 +25,20 @@ app.layout = html.Div([
                     dcc.Graph(id='my_graph',
                                     figure={'data':[
                                             {'x':[1,2],'y':[3,1]}
-                                    ]})
+                                    ],'layout':{'title':'Default Title'}}
+                                    )
 ])
+
+@app.callback(Output('my_graph','figure'),
+            [Input('my_stock_picker','value')])
+def update_graph(stock_ticker):
+    fig = {'data':[{'x':[1,2],'y':[3,1]}],
+            'layout':{'title':stock_ticker}
+    }
+    return fig
 
 if __name__=='__main__':
     app.run_server()
 
 
-print(df)
+#print(df)
