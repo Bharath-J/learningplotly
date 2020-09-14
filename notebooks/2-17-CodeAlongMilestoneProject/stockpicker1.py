@@ -10,7 +10,7 @@ from dash.dependencies import Input,Output,State
 
 app = dash.Dash()
 
-#IEX_API_KEY = os.environ.get('IEX_TOKEN')
+IEX_API_KEY = os.environ.get('IEX_TOKEN')
 #print(IEX_API_KEY)
 #start = datetime(2017,1,1)
 #end = datetime(2017,12,31)
@@ -32,7 +32,10 @@ app.layout = html.Div([
 @app.callback(Output('my_graph','figure'),
             [Input('my_stock_picker','value')])
 def update_graph(stock_ticker):
-    fig = {'data':[{'x':[1,2],'y':[3,1]}],
+    start = datetime(2020,1,1)
+    end = datetime(2020,12,31)
+    df = web.DataReader(stock_ticker,'iex',start,end,api_key=IEX_API_KEY)
+    fig = {'data':[{'x':df.index,'y':df['close']}],
             'layout':{'title':stock_ticker}
     }
     return fig
