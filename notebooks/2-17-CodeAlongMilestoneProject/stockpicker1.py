@@ -11,19 +11,28 @@ from dash.dependencies import Input,Output,State
 app = dash.Dash()
 
 IEX_API_KEY = os.environ.get('IEX_TOKEN')
-#print(IEX_API_KEY)
-#start = datetime(2017,1,1)
-#end = datetime(2017,12,31)
-#df = web.DataReader('TSLA','iex',start,end,api_key=IEX_API_KEY)
-#help(web.DataReader)
+
+nsdq = pd.read_csv('../../notebooks/Data/NASDAQcompanylist.csv')
+nsdq.set_index('Symbol',inplace=True)
+options = []
+
+for tic in nsdq.index:
+    #{'label':'user sees','value:'script sees'}
+    mydict = {}
+    mydict['label'] = str(nsdq.loc[tic]["Name"]) + ' ' + tic
+    mydict['value'] = tic
+    options.append(mydict)
+
 
 app.layout = html.Div([
                     html.H1('Stock Ticker Dashboard'),
                     html.Div([html.H3('Enter a stock symbol:',style={'paddingRight':'30px'}),
-                              dcc.Input(id='my_stock_picker',
-                                        value='TSLA',
-                                        style={'fontSize':24,'width':75}
-                                        )],style={'display':'inline-block','verticalAlign':'top'}),
+                    dcc.Dropdown(id='my_stock_picker',
+                                options = options,
+                                value=['TSLA'],
+                                multi=True
+                                )
+                            ],style={'display':'inline-block','verticalAlign':'top','width':'30%'}),
                                html.Div([html.H3('Select a start and end date:'),
                                         dcc.DatePickerRange(id='my_date_picker',
                                                             min_date_allowed=datetime(2015,1,1),
@@ -55,8 +64,12 @@ app.layout = html.Div([
 def update_graph(n_clicks,stock_ticker,start_date,end_date):
     start = datetime.strptime(start_date[:10],'%Y-%m-%d')
     end = datetime.strptime(end_date[:10],'%Y-%m-%d')
-    df = web.DataReader(stock_ticker,'iex',start,end,api_key=IEX_API_KEY)
-    fig = {'data':[{'x':df.index,'y':df['close']}],
+
+    traces = []
+    for tic in stock_ticker:
+        df = web.DataReader(tic,'iex',start,end,api_key=IEX_API_KEY)
+        traces.append({'x':df.index,'y':df['close'], 'name':tic})
+    fig = {'data':traces,
             'layout':{'title':stock_ticker}
     }
     return fig
