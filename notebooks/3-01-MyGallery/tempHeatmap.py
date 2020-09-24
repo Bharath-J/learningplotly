@@ -17,7 +17,9 @@ data = [go.Heatmap(x=df['MONTH'],
                     z=df['TMAX'],
                     colorscale='Reds')]
 
-layout = go.Layout(title='Max Temperature in Cupertino in 2020')
+layout = go.Layout(title='Max Temperature in Cupertino in 2020',
+                    xaxis=dict(title='MONTH'),
+                    yaxis=dict(title='DAY'))
 
 app.layout = html.Div([
             html.Div(dcc.Graph(id='heat-map-temp',
