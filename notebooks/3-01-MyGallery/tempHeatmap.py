@@ -23,7 +23,8 @@ layout = go.Layout(title='Max Temperature in Cupertino in 2020',
 
 app.layout = html.Div([
             html.Div(dcc.Graph(id='heat-map-temp',
-                                figure={'data':data,'layout':layout})
+                                figure={'data':data,'layout':layout}),
+                                style={'float':'left'}
                                 )
 ])
 
