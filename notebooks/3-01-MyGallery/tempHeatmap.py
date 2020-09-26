@@ -15,7 +15,7 @@ df['MONTH'] = pd.DatetimeIndex(df['DATE']).month
 data = [go.Heatmap(x=df['MONTH'],
                     y=df['DAY'],
                     z=df['TMAX'],
-                    colorscale='Reds')]
+                    colorscale='Blues')]
 
 layout = go.Layout(title='Max Temperature in Cupertino in 2020',
                     xaxis=dict(title='MONTH'),
