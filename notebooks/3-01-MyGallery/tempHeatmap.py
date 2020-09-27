@@ -21,11 +21,19 @@ layout = go.Layout(title='Max Temperature in Cupertino in 2020',
                     xaxis=dict(title='MONTH'),
                     yaxis=dict(title='DAY'))
 
+options = [{'label':'Blues', 'value':'Blues'},
+            {'label':'Reds', 'value':'Reds'}]
+
 app.layout = html.Div([
             html.Div(dcc.Graph(id='heat-map-temp',
                                 figure={'data':data,'layout':layout}),
                                 style={'float':'left'}
-                                )
+                                ),
+            dcc.Dropdown(id='color-scale-dropdown',
+                        options = options,
+                        value = ['Blues'],
+                        multi=False
+            )
 ])
 
 if __name__=='__main__':
