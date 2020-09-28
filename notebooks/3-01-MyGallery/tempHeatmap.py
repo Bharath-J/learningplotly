@@ -3,6 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 import plotly.graph_objs as go
+from dash.dependencies import Input, Output
 
 app = dash.Dash()
 
@@ -25,15 +26,16 @@ options = [{'label':'Blues', 'value':'Blues'},
             {'label':'Reds', 'value':'Reds'}]
 
 app.layout = html.Div([
-            html.Div(dcc.Graph(id='heat-map-temp',
-                                figure={'data':data,'layout':layout}),
-                                style={'float':'left'}
-                                ),
+            html.Label(['Colorscale for Heatmap']),
             dcc.Dropdown(id='color-scale-dropdown',
                         options = options,
                         value = ['Blues'],
                         multi=False
-            )
+            ),
+            html.Div(dcc.Graph(id='heat-map-temp',
+                                figure={'data':data,'layout':layout}),
+                                style={'float':'left'}
+                    )
 ])
 
 if __name__=='__main__':
