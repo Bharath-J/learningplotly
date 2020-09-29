@@ -23,7 +23,8 @@ layout = go.Layout(title='Max Temperature in Cupertino in 2020',
                     yaxis=dict(title='DAY'))
 
 options = [{'label':'Blues', 'value':'Blues'},
-            {'label':'Reds', 'value':'Reds'}]
+            {'label':'Reds', 'value':'Reds'},
+            {'label':'Picnic', 'value': 'Picnic'}]
 
 app.layout = html.Div([
             html.Label(['Colorscale for Heatmap']),
