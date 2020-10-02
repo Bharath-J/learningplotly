@@ -26,7 +26,8 @@ options = [{'label':'Blues', 'value':'Blues'},
             {'label':'Reds', 'value':'Reds'},
             {'label':'Picnic', 'value': 'Picnic'},
             {'label':'Portland','value':'Portland'},
-            {'label':'Viridis','value':'Viridis'}]
+            {'label':'Viridis','value':'Viridis'},
+            {'label':'Greens','value':'Greens'}]
 
 app.layout = html.Div([
             html.Label(['Colorscale for Heatmap']),
