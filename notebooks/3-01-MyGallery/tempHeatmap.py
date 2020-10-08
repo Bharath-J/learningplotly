@@ -9,10 +9,12 @@ from dash.dependencies import Input, Output
 app = dash.Dash()
 
 df = pd.read_csv("../../notebooks/Data/CupertinoWeather2020.csv")
+df_boston = pd.read_excel("../../notebooks/Data/BostonWeather2020.xlsx")
 
 df['DAY'] = pd.DatetimeIndex(df['DATE']).day
 df['MONTH'] = pd.DatetimeIndex(df['DATE']).month
 
+fig = make_subplots(rows=1, cols=2)
 
 data = [go.Heatmap(x=df['MONTH'],
                     y=df['DAY'],
